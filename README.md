@@ -14,3 +14,4 @@ This portfolio project was created as part of a Digital Skills Bootcamp in Softw
 4: created an api endpoint testing file & created an api endpoint
 5: created an articles:id endpoint for selecting articles by id
 6: created an articles endpoint for getting all articles in date DESC order
+7: created an endpoint to get article comments
