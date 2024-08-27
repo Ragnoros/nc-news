@@ -12,3 +12,5 @@ This portfolio project was created as part of a Digital Skills Bootcamp in Softw
 2: created a models & controllers folder to store the models and controller files
 3: created a topics-enpoint testing file & created the topics endpoint
 4: created an api endpoint testing file & created an api endpoint
+5: created an articles:id endpoint for selecting articles by id
+6: created an articles endpoint for getting all articles in date DESC order
