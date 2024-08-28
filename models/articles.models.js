@@ -18,3 +18,10 @@ exports.selectArticleComments = (id) => {
         return rows
     })
 }
+
+exports.insertArticleComments = (username, body, id) => {
+    const insertVal = [username, body, id]
+    return db.query('INSERT INTO comments (author, body, article_id) VALUES ($1, $2, $3) RETURNING *', insertVal).then((data) => {
+        return data.rows[0]
+    })
+}

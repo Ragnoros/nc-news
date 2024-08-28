@@ -51,12 +51,27 @@
         {
           "comment_id": 1,
           "body": "Seafood substitutions are increasing",
-          "votes": "cooking",
-          "author": "weegembump",
+          "votes": 16,
+          "author": "some_guy",
           "created_at": "2018-05-30T15:59:13.341Z",
-          "article_id": 0
+          "article_id": 1
         }
       ]
+    }
+  },
+  "POST /api/articles/:article_id/comments": {
+    "description": "inserts a comment into the comments table, and creates a relationship with an article",
+    "queries": [],
+    "exampleResponse": {
+      "comments": 
+        {
+          "comment_id": 1,
+          "body": "Seafood substitutions are increasing",
+          "votes": 0,
+          "author": "john_smith",
+          "created_at": "2018-05-30T15:59:13.341Z",
+          "article_id": 1
+        }
     }
   }
 }
