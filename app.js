@@ -9,7 +9,8 @@ const {
   postArticleComments,
   patchArticle,
 } = require("./controllers/articles.controllers.js");
-const { removeComment } = require("./controllers/comments.controllers.js")
+const { removeComment } = require("./controllers/comments.controllers.js");
+const { getUsers } = require("./controllers/users.controllers.js");
 
 app.use(express.json());
 
@@ -18,12 +19,13 @@ app.get("/api", getApi);
 app.get("/api/articles/:article_id", getArticlesById);
 app.get("/api/articles", getArticles);
 app.get("/api/articles/:article_id/comments", getArticleComments);
+app.get("/api/users", getUsers);
 
 app.post("/api/articles/:article_id/comments", postArticleComments);
 
 app.patch("/api/articles/:article_id", patchArticle);
 
-app.delete("/api/comments/:comment_id", removeComment)
+app.delete("/api/comments/:comment_id", removeComment);
 
 app.use((err, req, res, next) => {
   if (err.status && err.msg) {
