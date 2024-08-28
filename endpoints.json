@@ -92,5 +92,16 @@
     "description": "deletes a comment when provided an id",
     "queries": [],
     "exampleResponse": {}
+  },
+  "GET /api/users": {
+    "description": "retrieves all users from the database",
+    "queries": [],
+    "exampleResponse": [
+      {
+        "username": "john768",
+        "name": "John",
+        "avatar_url": "https://www.healthyies.com/wp-content/uploads/2016/06/Lime3.jpg"
+      }
+    ]
   }
 }
