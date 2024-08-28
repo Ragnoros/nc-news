@@ -16,3 +16,4 @@ This portfolio project was created as part of a Digital Skills Bootcamp in Softw
 6: created an articles endpoint for getting all articles in date DESC order
 7: created an endpoint to get article comments
 8: created an endpoint to post comments to an article
+9: created an endpoint to patch article votes an increment votes by given number

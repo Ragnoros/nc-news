@@ -30,17 +30,16 @@
     "description": "sends back a single article of the desired id",
     "queries": [],
     "exampleResponse": {
-      "article":
-        {
-          "article_id": 1,
-          "title": "Seafood substitutions are increasing",
-          "topic": "cooking",
-          "author": "weegembump",
-          "body": "Text from the article..",
-          "created_at": "2018-05-30T15:59:13.341Z",
-          "votes": 0,
-          "comment_count": 6
-        }
+      "article": {
+        "article_id": 1,
+        "title": "Seafood substitutions are increasing",
+        "topic": "cooking",
+        "author": "weegembump",
+        "body": "Text from the article..",
+        "created_at": "2018-05-30T15:59:13.341Z",
+        "votes": 0,
+        "comment_count": 6
+      }
     }
   },
   "GET /api/articles/:article_id/comments": {
@@ -63,15 +62,30 @@
     "description": "inserts a comment into the comments table, and creates a relationship with an article",
     "queries": [],
     "exampleResponse": {
-      "comments": 
-        {
-          "comment_id": 1,
-          "body": "Seafood substitutions are increasing",
-          "votes": 0,
-          "author": "john_smith",
-          "created_at": "2018-05-30T15:59:13.341Z",
-          "article_id": 1
-        }
+      "comments": {
+        "comment_id": 1,
+        "body": "Seafood substitutions are increasing",
+        "votes": 0,
+        "author": "john_smith",
+        "created_at": "2018-05-30T15:59:13.341Z",
+        "article_id": 1
+      }
+    }
+  },
+  "PATCH /api/articles/:id": {
+    "description": "increments votes field in an article by given number",
+    "queries": [],
+    "exampleResponse": {
+      "article": {
+        "article_id": 1,
+        "title": "Seafood substitutions are increasing",
+        "topic": "cooking",
+        "author": "weegembump",
+        "body": "Text from the article..",
+        "created_at": "2018-05-30T15:59:13.341Z",
+        "votes": 1,
+        "comment_count": 6
+      }
     }
   }
 }
