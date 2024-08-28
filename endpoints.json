@@ -87,5 +87,10 @@
         "comment_count": 6
       }
     }
+  },
+  "DELETE /api/comments/:comment_id": {
+    "description": "deletes a comment when provided an id",
+    "queries": [],
+    "exampleResponse": {}
   }
 }
