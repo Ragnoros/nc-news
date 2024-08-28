@@ -8,7 +8,7 @@ beforeEach(() => seed(data));
 afterAll(() => db.end());
 
 describe('Testing Articles Comments Endpoint', () => {
-    describe('/api/articles/:articles_id/comments', () => {
+    describe('GET /api/articles/:articles_id/comments', () => {
         test('200: get 200 response', () => {
             return request(app).get('/api/articles/1/comments').expect(200)
         })
@@ -37,6 +37,45 @@ describe('Testing Articles Comments Endpoint', () => {
         })
         test('400: get 400 response when article id is a string', () => {
             return request(app).get('/api/articles/hello/comments').expect(400).then(({body}) => {
+                expect(body.msg).toBe('Bad Request')
+            })
+        })
+    })
+    describe('POST /api/articles/:articles_id/comments', () => {
+        test('200: get 200 response', () => {
+            const body = {
+                username: 'butter_bridge',
+                body: 'Hello this is a comment'
+            };
+            return request(app).post('/api/articles/1/comments').send(body).expect(200)
+        })
+        test('200: post request returns the inserted object', () => {
+            const body = {
+                username: 'butter_bridge',
+                body: 'Hello this is a comment'
+            };
+            return request(app).post('/api/articles/1/comments').send(body).expect(200).then(({body}) => {
+                expect(body).toHaveProperty('comment')
+                expect(body.comment).toHaveProperty('comment_id')
+                expect(body.comment.author).toBe('butter_bridge')
+                expect(body.comment.body).toBe('Hello this is a comment')
+            })
+        })
+        test('404: get 404 response when article id does not exist', () => {
+            const body = {
+                username: 'butter_bridge',
+                body: 'Hello this is a comment'
+            };
+            return request(app).post('/api/articles/1111111/comments').send(body).expect(404).then(({body}) => {
+                expect(body.msg).toBe('Article Not Found')
+            })
+        })
+        test('400: get 400 response when article id is string', () => {
+            const body = {
+                username: 'butter_bridge',
+                body: 'Hello this is a comment'
+            };
+            return request(app).post('/api/articles/hello/comments').send(body).expect(400).then(({body}) => {
                 expect(body.msg).toBe('Bad Request')
             })
         })
