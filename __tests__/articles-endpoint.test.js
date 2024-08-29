@@ -43,7 +43,7 @@ describe("Articles Endpoint Testing", () => {
       return request(app).get("/api/artic").expect(404);
     });
   });
-  describe("/api/articles?sort_by=column", () => {
+  describe("GET /api/articles?sort_by=column", () => {
     test("200: get 200 response", () => {
       return request(app)
         .get("/api/articles?sort_by=title&order=asc")
@@ -79,6 +79,37 @@ describe("Articles Endpoint Testing", () => {
     test("404: returns 404 when entering an incomplete query", () => {
       return request(app)
         .get("/api/articles?order=")
+        .expect(404)
+        .then(({ body }) => {
+          expect(body.msg).toBe("Invalid Query");
+        });
+    });
+  });
+  describe("GET /api/articles?topic=string", () => {
+    test("200: get 200 response", () => {
+      return request(app).get("/api/articles?topic=cats").expect(200);
+    });
+    test("200: returns all articles with a cats topic", () => {
+      return request(app)
+        .get("/api/articles?topic=cats")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body[0].topic).toBe("cats");
+        });
+    });
+    test("200: returns all articles with a mitch topic", () => {
+      return request(app)
+        .get("/api/articles?topic=mitch")
+        .expect(200)
+        .then(({ body }) => {
+          body.forEach((article) => {
+            expect(article.topic).toBe("mitch");
+          });
+        });
+    });
+    test("404: get 404 response when query topic does not match any topic", () => {
+      return request(app)
+        .get("/api/articles?topic=ca")
         .expect(404)
         .then(({ body }) => {
           expect(body.msg).toBe("Invalid Query");

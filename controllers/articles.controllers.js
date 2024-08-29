@@ -20,14 +20,14 @@ exports.getArticlesById = (req, res, next) => {
 
 exports.getArticles = (req, res, next) => {
   let sort_by = "created_at";
-  const { order } = req.query;
+  const { order, topic } = req.query;
   if (req.query.sort_by) sort_by = req.query.sort_by;
   if (Object.keys(req.query).length === 0) {
     selectArticles().then((data) => {
       res.status(200).send(data);
     });
-  } else if (sort_by || order) {
-    sortArticle(sort_by, order)
+  } else if (sort_by || order || topic) {
+    sortArticle(sort_by, order, topic)
       .then((data) => {
         res.status(200).send(data);
       })

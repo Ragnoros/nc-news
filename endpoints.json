@@ -43,6 +43,23 @@
       ]
     }
   },
+  "GET /api/articles?topic=cats": {
+    "description": "serves all articles that have the topic of cats",
+    "queries": [],
+    "exampleResponse": {
+      "articles": [
+        {
+          "article_id": 1,
+          "title": "A",
+          "topic": "cats",
+          "author": "weegembump",
+          "created_at": "2018-05-30T15:59:13.341Z",
+          "votes": 0,
+          "comment_count": 6
+        }
+      ]
+    }
+  },
   "GET /api/articles/:id": {
     "description": "sends back a single article of the desired id",
     "queries": [],
