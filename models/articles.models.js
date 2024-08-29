@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const format = require("pg-format");
 
 exports.selectArticlesById = (id) => {
   return db
@@ -56,4 +57,13 @@ exports.updateArticle = (inc_votes, id) => {
         return Promise.reject({ status: 404, msg: "Not Found" });
       return rows[0];
     });
+};
+
+exports.sortArticle = (sort_by, order = "asc") => {
+  if (order === "")
+    return Promise.reject({ status: 404, msg: "Invalid Query" });
+  const sql = format("SELECT * FROM articles ORDER BY %I %s", sort_by, order);
+  return db.query(sql).then(({ rows }) => {
+    return rows;
+  });
 };

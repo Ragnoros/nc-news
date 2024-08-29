@@ -19,3 +19,4 @@ This portfolio project was created as part of a Digital Skills Bootcamp in Softw
 9: created an endpoint to patch article votes an increment votes by given number
 10: created an endpoint to delete comments from the database
 11: created a get users endpoint to return all users from the database
+12: created a way to qeury the article api for sorting and ordering 
