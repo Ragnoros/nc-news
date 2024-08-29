@@ -59,11 +59,20 @@ exports.updateArticle = (inc_votes, id) => {
     });
 };
 
-exports.sortArticle = (sort_by, order = "asc") => {
+exports.sortArticle = (sort_by, order = "asc", topic = "") => {
+  let whereQuery = `WHERE topic = '${topic}'`;
+  if (topic === "") whereQuery = undefined;
   if (order === "")
     return Promise.reject({ status: 404, msg: "Invalid Query" });
-  const sql = format("SELECT * FROM articles ORDER BY %I %s", sort_by, order);
+  const sql = format(
+    "SELECT * FROM articles %s ORDER BY %I %s",
+    whereQuery,
+    sort_by,
+    order
+  );
   return db.query(sql).then(({ rows }) => {
+    if (rows.length === 0)
+      return Promise.reject({ status: 404, msg: "Invalid Query" });
     return rows;
   });
 };
