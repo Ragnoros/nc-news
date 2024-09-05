@@ -100,5 +100,15 @@ describe("Articles Endpoint Testing", () => {
           expect(body.msg).toBe("Bad Request");
         });
     });
-  });
+  })
+  describe('GET /api/articles/articlesid comment count', () => {
+    test.only('200: get 200 response', () => {
+      return request(app).get('/api/articles/1').expect(200)
+    })
+    test.only('200: get 200 response', () => {
+      return request(app).get('/api/articles/1').expect(200).then(({body}) => {
+        console.log(body)
+      })
+    })
+  })
 });
