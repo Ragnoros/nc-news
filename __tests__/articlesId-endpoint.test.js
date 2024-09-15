@@ -100,15 +100,19 @@ describe("Articles Endpoint Testing", () => {
           expect(body.msg).toBe("Bad Request");
         });
     });
-  })
-  describe('GET /api/articles/articlesid comment count', () => {
-    test.only('200: get 200 response', () => {
-      return request(app).get('/api/articles/1').expect(200)
-    })
-    test.only('200: get 200 response', () => {
-      return request(app).get('/api/articles/1').expect(200).then(({body}) => {
-        console.log(body)
-      })
-    })
-  })
+  });
+  describe("GET /api/articles/articlesid comment count", () => {
+    test("200: get 200 response", () => {
+      return request(app).get("/api/articles/1").expect(200);
+    });
+    test("200: get 200 response", () => {
+      return request(app)
+        .get("/api/articles/1")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body[0]).toHaveProperty("total_comments");
+          expect(body[0].total_comments).toBe("11");
+        });
+    });
+  });
 });
